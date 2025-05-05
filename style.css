@@ -1,0 +1,123 @@
+
+body {
+  background-color: #a6c5da;
+  padding-bottom: 60px;
+  overflow: hidden;
+  font-family: 'jf open 粉圓', 'Noto Sans TC', sans-serif;
+}
+#cardContainer {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+.host_card {
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  padding-top: calc(100% / 1.11);
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  transition: filter 0.4s;
+}
+.caption-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s;
+}
+.caption-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.card-animate {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInSlide 0.6s ease-out forwards;
+}
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#infoPanel {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 80%;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.5s ease-in-out;
+  z-index: 1050;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+}
+#infoPanel.show {
+  bottom: 0;
+}
+#infoPanel iframe {
+  width: 100%;
+  height: calc(100% - 40px);
+  border: none;
+}
+#infoPanel .close-btn {
+  text-align: right;
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+.fade-in {
+  opacity: 1 !important;
+  transition: opacity 0.6s ease-in;
+}
+.fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.6s ease-out;
+}
+.host-tab {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  background-color: #ccc;
+  border-top: 1px solid #ccc;
+  z-index: 1060;
+}
+.host-tab a {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #888;
+  background: #ccc;
+  transition: background 0.3s, color 0.3s;
+}
+.host-tab a:first-child.active {
+  color: #ffffff;
+  background-color: #85c0b1;
+  border-start-end-radius: 30px;
+}
+.host-tab a:nth-child(2).active {
+  color: #ffffff;
+  background-color: #85c0b1;
+  border-start-start-radius: 30px;
+}
+.host-tab a.active::after {
+  content: " 🐌";
+  margin-left: 4px;
+  font-size: 1.1em;
+}

@@ -1,0 +1,56 @@
+{
+  "host1": [
+    {
+      "imgurl": "img/host_1/幸福蝸牛外觀與大廳.jpg",
+      "btnText": "一館包棟",
+      "link": "https://linevoom.line.me/post/1165468062645780766"
+    },
+    {
+      "imgurl": "img/host_1/一館浪漫四人套房.jpg",
+      "btnText": "2F 浪漫四人套房",
+      "link": "https://line.me/R/home/public/post?postId=1165467727145555110"
+    },
+    {
+      "imgurl": "img/host_1/一館自在家庭六人房.jpg",
+      "btnText": "3F 自在家庭六人房",
+      "link": "https://linevoom.line.me/post/1165467744045566533"
+    },
+    {
+      "imgurl": "img/host_1/一館四樓景觀雙人套房.jpg",
+      "btnText": "4F 四樓景觀雙人套房",
+      "link": "https://linevoom.line.me/post/1165467756345574854"
+    }
+  ],
+  "host2": [
+    {
+      "imgurl": "img/host_2/二館大廳.jpg",
+      "btnText": "二館包棟",
+      "link": "https://linevoom.line.me/post/1165468037845764050"
+    },
+    {
+      "imgurl": "img/host_2/二館1F 溫馨四人套房.jpg",
+      "btnText": "1F 溫馨四人套房",
+      "link": "https://linevoom.line.me/post/1165467865745648326"
+    },
+    {
+      "imgurl": "img/host_2/二館2F-愜意雙人套房.jpg",
+      "btnText": "2F 愜意雙人套房",
+      "link": "https://linevoom.line.me/post/1165467794945600821"
+    },
+    {
+      "imgurl": "img/host_2/二館3F-幸福六人套房.jpg",
+      "btnText": "3F 幸福六人套房",
+      "link": "https://linevoom.line.me/post/1165467828045622980"
+    },
+    {
+      "imgurl": "img/host_2/二館3F-談心雙人套房.jpg",
+      "btnText": "3F 談心雙人套房",
+      "link": "https://linevoom.line.me/post/1165467822345619229"
+    },
+    {
+      "imgurl": "img/host_2/二館4F 閑情雙臥包層 雙人房2 一套衛浴.jpg",
+      "btnText": "4F 閑情四人房包層",
+      "link": "https://linevoom.line.me/post/1165467901045672891"
+    }
+  ]
+}
