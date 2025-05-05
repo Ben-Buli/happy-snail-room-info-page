@@ -97,3 +97,4 @@ fetch("data.json")
     }, 300);
   });
   
+  tabHost1.click(); // 頁面載入的時候先觸發一次tab1被選中的事件
