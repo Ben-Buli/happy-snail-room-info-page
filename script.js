@@ -41,24 +41,6 @@ function renderHost(container, data) {
   });
 }
 
-// 顯示提示訊息
-function showToast(message, isError = false) {
-  const toast = document.createElement("div");
-  toast.textContent = message;
-  toast.style.position = "fixed";
-  toast.style.bottom = "80px";
-  toast.style.left = "50%";
-  toast.style.transform = "translateX(-50%)";
-  toast.style.background = isError ? "#dc3545" : "#28a745";
-  toast.style.color = "white";
-  toast.style.padding = "8px 16px";
-  toast.style.borderRadius = "6px";
-  toast.style.zIndex = "9999";
-  toast.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
-  document.body.appendChild(toast);
-
-  setTimeout(() => toast.remove(), 3000);
-}
 
 // 載入合併資料
 fetch("data.json")
@@ -74,39 +56,44 @@ fetch("data.json")
   })
   .catch(err => {
     console.error("資料載入失敗", err);
-    // showToast("資料載入失敗 ❌", true);
   });
 
-// tab 切換控制
-tabHost1.addEventListener("click", (e) => {
-  e.preventDefault();
-  tabHost1.classList.add("active");
-  tabHost2.classList.remove("active");
-
-  container2.classList.remove("fade-in");
-  container2.classList.add("fade-out");
-
-  titleText.innerText = "一館房型";
-  setTimeout(() => {
-    container2.style.display = "none";
-    container1.style.display = "flex";
-    container1.classList.remove("fade-out");
-    container1.classList.add("fade-in");
-  }, 300);
-});
-
-tabHost2.addEventListener("click", (e) => {
-  e.preventDefault();
-  tabHost2.classList.add("active");
-  tabHost1.classList.remove("active");
-
-  container1.classList.remove("fade-in");
-  container1.classList.add("fade-out");
-  titleText.innerText = "二館房型";
-  setTimeout(() => {
-    container1.style.display = "none";
-    container2.style.display = "flex";
-    container2.classList.remove("fade-out");
-    container2.classList.add("fade-in");
-  }, 300);
-});
+  tabHost1.addEventListener("click", (e) => {
+    e.preventDefault();
+    tabHost1.classList.add("active");
+    tabHost2.classList.remove("active");
+  
+    titleText.innerText = "一館房型";
+  
+    // 切換顯示容器
+    container2.classList.remove("fade-in");
+    container2.classList.add("fade-out");
+  
+    setTimeout(() => {
+      container2.style.display = "none";
+  
+      container1.style.display = "flex";
+      container1.classList.remove("fade-out"); // 👈 修正：確保拿掉 opacity:0 的類別
+      container1.classList.add("fade-in");     // 👈 修正：重新 fade-in 顯示
+    }, 300);
+  });
+  
+  tabHost2.addEventListener("click", (e) => {
+    e.preventDefault();
+    tabHost2.classList.add("active");
+    tabHost1.classList.remove("active");
+  
+    titleText.innerText = "二館房型";
+  
+    container1.classList.remove("fade-in");
+    container1.classList.add("fade-out");
+  
+    setTimeout(() => {
+      container1.style.display = "none";
+  
+      container2.style.display = "flex";
+      container2.classList.remove("fade-out"); // 👈 同樣修正
+      container2.classList.add("fade-in");
+    }, 300);
+  });
+  
