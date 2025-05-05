@@ -25,12 +25,18 @@ function renderHost(container, data) {
     col.className = "col-6 col-md-4 col-xl-3 card-animate";
     col.style.animationDelay = `${index * 100}ms`;
 
+    const onClickAttr = item.link ? `onclick="window.open('${item.link}', '_blank')"` : "";
+
+    const imgUrlAttr = item.imgurl ? `style="background-image: url('${item.imgurl}')"` : "";
+    const btnText = item.btnText ? `<a class="caption-btn">${item.btnText}</a>` : '';
+
     col.innerHTML = `
-      <div class="host_card" onclick="window.open('${item.link}', '_blank')">
-        <div class="bg_zoom" style="background-image: url('${item.imgurl}')"></div>
-        <a class="caption-btn">${item.btnText}</a>
+      <div class="host_card" ${onClickAttr}>
+        <div class="bg_zoom" ${imgUrlAttr}></div>
+        ${btnText}
       </div>
     `;
+    
     container.appendChild(col);
   });
 }
