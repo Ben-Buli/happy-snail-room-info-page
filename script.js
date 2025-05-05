@@ -26,46 +26,12 @@ function renderHost(container, data) {
     col.style.animationDelay = `${index * 100}ms`;
 
     col.innerHTML = `
-      <div class="host_card" data-link="${item.link}" data-bg="${item.imgurl}">
-        <div class="bg_zoom"></div>
+      <div class="host_card" onclick="window.open('${item.link}', '_blank')">
+        <div class="bg_zoom" style="background-image: url('${item.imgurl}')"></div>
         <a class="caption-btn">${item.btnText}</a>
       </div>
     `;
     container.appendChild(col);
-  });
-
-  // 設定背景圖與點擊事件
-  container.querySelectorAll(".host_card").forEach((card) => {
-    const bg = card.dataset.bg;
-    const link = card.dataset.link;
-    const bgZoom = card.querySelector(".bg_zoom");
-
-    if (bgZoom) {
-      bgZoom.style.backgroundImage = `url('${bg}')`;
-      bgZoom.style.backgroundSize = "cover";
-      bgZoom.style.backgroundPosition = "center";
-      bgZoom.style.width = "100%";
-      bgZoom.style.height = "100%";
-      bgZoom.style.position = "absolute";
-      bgZoom.style.top = "0";
-      bgZoom.style.left = "0";
-      bgZoom.style.transition = "transform 0.4s ease";
-    }
-
-    card.addEventListener("mouseover", () => {
-      if (bgZoom) bgZoom.style.transform = "scale(1.2)";
-    });
-    card.addEventListener("mouseout", () => {
-      if (bgZoom) bgZoom.style.transform = "scale(1)";
-    });
-
-    card.addEventListener("click", () => {
-      if (link && link !== "undefined") {
-        window.open(link, "_blank");
-      } else {
-        showToast("⚠️ 此房型尚未設置連結", true);
-      }
-    });
   });
 }
 
@@ -85,25 +51,24 @@ function showToast(message, isError = false) {
   toast.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
   document.body.appendChild(toast);
 
-  setTimeout(() => {
-    toast.remove();
-  }, 3000);
+  setTimeout(() => toast.remove(), 3000);
 }
 
-// 載入資料
+// 載入合併資料
 fetch("data.json")
-  .then((res) => {
-    if (!res.ok) throw new Error("無法讀取 data.json");
+  .then(res => {
+    if (!res.ok) throw new Error("無法讀取資料");
     return res.json();
   })
-  .then((data) => {
-    renderHost(container1, data.host1);
-    renderHost(container2, data.host2);
-    console.log("資料載入成功 ✅");
+  .then(data => {
+    const host1Items = data.hosts.filter(item => item.host === 1);
+    const host2Items = data.hosts.filter(item => item.host === 2);
+    renderHost(container1, host1Items);
+    renderHost(container2, host2Items);
   })
-  .catch((err) => {
-    console.error("讀取資料錯誤：", err);
-    showToast("資料載入失敗 ❌", true);
+  .catch(err => {
+    console.error("資料載入失敗", err);
+    // showToast("資料載入失敗 ❌", true);
   });
 
 // tab 切換控制
@@ -114,8 +79,8 @@ tabHost1.addEventListener("click", (e) => {
 
   container2.classList.remove("fade-in");
   container2.classList.add("fade-out");
-  titleText.innerText = "一館房型";
 
+  titleText.innerText = "一館房型";
   setTimeout(() => {
     container2.style.display = "none";
     container1.style.display = "flex";
@@ -132,7 +97,6 @@ tabHost2.addEventListener("click", (e) => {
   container1.classList.remove("fade-in");
   container1.classList.add("fade-out");
   titleText.innerText = "二館房型";
-
   setTimeout(() => {
     container1.style.display = "none";
     container2.style.display = "flex";
