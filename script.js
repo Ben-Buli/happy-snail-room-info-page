@@ -63,11 +63,14 @@ fetch("data.json")
   .then(data => {
     renderHost(container1, data.host1);
     renderHost(container2, data.host2);
-    showToast("資料載入成功 ✅");
+    // showToast("資料載入成功 ✅");
+    console.log("資料載入成功 ✅");
+    
   })
   .catch(err => {
     console.error("讀取資料錯誤：", err);
-    showToast("資料載入失敗 ❌", true);
+    // showToast("資料載入失敗 ❌", true);
+    console.log("資料載入失敗 ❌");
   });
 
 // tab 切換控制
